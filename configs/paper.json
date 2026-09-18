@@ -1,0 +1,62 @@
+{
+  "evaluation": {
+    "cases": 400,
+    "selection": "exactly one gold regulation",
+    "split": "evaluation subset, not a train/test split",
+    "metrics": [
+      "exact_rule_id_recall_at_1",
+      "exact_rule_id_recall_at_5",
+      "exact_rule_id_recall_at_10"
+    ],
+    "corpus_articles": 226,
+    "corpus_rule_units": 1040
+  },
+  "artifact_generation": {
+    "model": "gpt-5.6-luna",
+    "prompt": "prompts/artifact_generation.md",
+    "system_messages": "prompts/system_messages.json",
+    "api": "chat.completions.parse",
+    "sampling_parameters": "Not explicitly set in the original generation call."
+  },
+  "baselines": {
+    "methods": [
+      "BM25",
+      "DenseRAG",
+      "GraphRAG-Local with source reranking"
+    ],
+    "question": "이 제작안을 방송하기 전에 규정상 검토가 필요한 부분은 무엇인가?",
+    "selector_model": "gpt-5.6-luna",
+    "reasoning_effort": "none",
+    "temperature": 0.7,
+    "top_p": 0.8,
+    "seed": 42,
+    "max_output_tokens": 768,
+    "article_candidates": 10,
+    "evidence_tokens": 8192,
+    "embedding_model": "Qwen3-Embedding-8B",
+    "embedding_dimensions": 4096,
+    "bm25": {
+      "tokenizer": "Kiwi",
+      "k1": 1.5,
+      "b": 0.75
+    },
+    "graphrag_auxiliary_context_tokens": 2048,
+    "graphrag_community_report_context_tokens": 3000,
+    "release_status": "Implementation and selector prompt pending."
+  },
+  "llmwiki": {
+    "question": "다음 제작물을 방송 전에 검토하라. 검토 필요 여부, 관련 규정과 판단 근거를 제시하라.",
+    "model": "gpt-5.6-luna",
+    "reasoning_effort": "medium",
+    "api": "responses",
+    "max_tool_calls": 15,
+    "max_model_calls": 20,
+    "search_k": 10,
+    "qa_prompt": "prompts/llmwiki/qa/qa.md",
+    "compile_select_max": 5,
+    "content_validate_every_articles": 5,
+    "repair_every_validations": 10,
+    "release_status": "Prompt templates included; index and execution code pending."
+  },
+  "comparison_note": "System-level comparison: questions, reasoning settings, search budgets and output constraints differ across methods."
+}

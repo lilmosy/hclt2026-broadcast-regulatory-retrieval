@@ -1,0 +1,30 @@
+{
+  "release": "initial-paper-materials",
+  "schema_version": "regulatory_retrieval_400_v1",
+  "selection": "len(gold.applicable_regulations) == 1",
+  "case_count": 400,
+  "ordered_qa_ids_sha256": "01a563ae8916fcbe3140fd615a3543aeda58c0b3c0b0819a5224d90d455862d4",
+  "source_sha256": {
+    "real/data/processed/synthetic_data/synthetic_qa.jsonl": "552a097672c6f699bbe4ff235c41b696a900d209f728ba1da95ae3ec13364a1f",
+    "real/data/processed/synthetic_data/decision_chunks.jsonl": "acd8e3a9d5a046cebef98fafcd937e8be4c3b54536edec5d7a824111e7a7b812",
+    "real/data/processed/corpus/legal_corpus.jsonl": "6f5c8d5c7ea99cd6b138417440c69b26cf8874c0600fc2c151b9834f60854d97"
+  },
+  "files_sha256": {
+    "configs/paper.json": "323a4dc95d1dc81a9e6f4178f4b0e1adf77f08a608e5a8109cffdbf935e1df14",
+    "data/README.md": "a67df9a3d2b96b63079fec2d54faad6d41759e7f5f16585d122be13cc67f4fd7",
+    "data/benchmark_400.jsonl": "686ba05f70cca668bdcc3e96381642bcf42bbc2af43758d315c1d69a28acdcdf",
+    "data/legal_corpus.jsonl": "6f5c8d5c7ea99cd6b138417440c69b26cf8874c0600fc2c151b9834f60854d97",
+    "data/regulations/방송광고심의에_관한_규정.txt": "0eeb3622f6972ff5963364a9b215e6b50151dcf91de64497def261b2281ffc1c",
+    "data/regulations/방송심의에_관한_규정.txt": "88ea04dde29b2e066cada4c16942b17a9300dddce47a891006d8b30416068394",
+    "data/regulations/상품소개_및_판매방송_심의에_관한_규정.txt": "23a6c1335379eee8bc588c986b8f7f254fd3891ef58692ac51b455fe46a67092",
+    "data/sources.jsonl": "c983c2a28235607c8acec71e3fb06c87135b21a3ca1e7f47d7d0a4297bc4a9d2",
+    "prompts/README.md": "94411321d436d62072cc2ce8b92300a6198f17ee9020799c6cda6d62656723ad",
+    "prompts/artifact_generation.md": "74a77e4c1f3c3d4dbd496f0c566659bb516c3b6cec398c320c6bbcb396446381",
+    "prompts/llmwiki/compile/compile_v1.md": "0dc0867de816eb43af4f0e462cf184cecbc248b223f5bec1324cfcc7678bd404",
+    "prompts/llmwiki/compile/content_validate_v1.md": "306d68c2991aa1b62896b1841d7e1fc704a7202fcd05616a356ab56be18377aa",
+    "prompts/llmwiki/compile/repair_v1.md": "2734a6beee1c539b04d6a790716db6ba0695c89e625ad69b0a6bd9fe41857c83",
+    "prompts/llmwiki/compile/select_v1.md": "f4e2463a79dbca6e863e485d6a3ede7347df594450abcccdebb7c1641a4850fc",
+    "prompts/llmwiki/qa/qa.md": "edbfdc29deb9dfecde014c4071078d7b83873a73088321da57dfbc75628f100a",
+    "prompts/system_messages.json": "7c231496dee1050ba83059aa1334ea15953b365557e6370a19ed476e3771e893"
+  }
+}

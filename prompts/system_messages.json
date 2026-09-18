@@ -1,0 +1,9 @@
+{
+  "artifact_generation": "지시를 정확히 따르고 JSON object만 출력한다.",
+  "llmwiki_compilation": {
+    "select_system": "법령 Wiki 컴파일러의 SELECTPAGES 단계다. 요청한 JSON만 출력한다.",
+    "compile_system": "법령 Wiki 컴파일러의 COMPILEWIKIPAGES 단계다. 요청한 JSON만 출력한다.",
+    "content_validate_system": "법령 Wiki 컴파일러의 CONTENTVALIDATE 단계다. 요청한 JSON만 출력한다.",
+    "repair_system": "법령 Wiki 컴파일러의 LLMPERIODICFIX 단계다. 요청한 JSON만 출력한다."
+  }
+}
