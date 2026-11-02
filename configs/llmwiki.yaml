@@ -1,0 +1,26 @@
+# 역할: legal corpus를 논문 Algorithm 1 방식(SELECT → COMPILE → 검증 → Error Book)으로
+# LLM이 직접 개체 단위 페이지로 적재하는 설정.
+# - 어떤 모델을 쓰는가? → model (luna, OpenAI 호환 structured output)
+# - 프롬프트는 어디에 있는가? → select_prompt, compile_prompt
+# - SELECT가 고를 수 있는 기존 페이지 최대 수는? → select_max (논문 k=5)
+# - content 검증·수리 주기는? → content_validate_every, repair_every_validations
+# - Wiki 트리는 output_dir, 컴파일 상태(_manifest.json)·API cache·로그는 run_dir
+# 가격은 모르면 null로 두고 토큰만 기록한다. API key는 저장소 루트 .env.
+
+model: gpt-5.6-luna
+select_prompt: prompts/llmwiki/compile/select_v1.md
+compile_prompt: prompts/llmwiki/compile/compile_v1.md
+select_system: "법령 Wiki 컴파일러의 SELECTPAGES 단계다. 요청한 JSON만 출력한다."
+compile_system: "법령 Wiki 컴파일러의 COMPILEWIKIPAGES 단계다. 요청한 JSON만 출력한다."
+select_max: 5
+content_validate_prompt: prompts/llmwiki/compile/content_validate_v1.md
+repair_prompt: prompts/llmwiki/compile/repair_v1.md
+content_validate_system: "법령 Wiki 컴파일러의 CONTENTVALIDATE 단계다. 요청한 JSON만 출력한다."
+repair_system: "법령 Wiki 컴파일러의 LLMPERIODICFIX 단계다. 요청한 JSON만 출력한다."
+content_validate_every: 5      # 조문 N건마다 그 사이 건드린 페이지를 원문과 대조 (1콜)
+repair_every_validations: 10   # 검증 M회마다 걸린 페이지를 LLM이 수리 (1콜)
+output_dir: outputs/llmwiki/wiki
+run_dir: outputs/llmwiki/compile
+qa_search_k: 10               # wiki_search가 돌려주는 후보 수 (논문 미명시, 우리 선택)
+input_price_per_million: null
+output_price_per_million: null

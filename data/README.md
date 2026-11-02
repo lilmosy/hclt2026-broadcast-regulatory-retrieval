@@ -1,34 +1,34 @@
-# Paper evaluation data
+# 평가 데이터
 
-## Scope
+## 범위
 
-This release contains the 400 single-gold cases used in the HCLT 2026 paper. They are selected from the existing 532-case synthetic dataset by `len(gold.applicable_regulations) == 1`, retaining the original case order, IDs, scenario text and gold rule IDs. No new generation or relabeling was performed for this export.
+HCLT 2026 논문의 주 평가에 사용한 단일 정답 400건입니다. 전체 합성 데이터 532건 중 `len(gold.applicable_regulations) == 1`인 사례를 원래 순서, ID, 제작안 문장, 정답 규정 그대로 추렸습니다. 이 과정에서 새로 생성하거나 다시 라벨링하지 않았습니다.
 
-The subset contains 187 broadcasting-program, 78 broadcasting-advertisement and 135 product-sales cases. Gold units are 89 articles, 228 paragraphs, 66 items and 17 subitems. The selection is not a training/test partition.
+방송프로그램 187건, 방송광고 78건, 상품판매방송 135건입니다. 정답 단위는 조 89, 항 228, 호 66, 목 17건입니다. 학습/평가 분할이 아닙니다.
 
-## Files and schema
+## 파일과 스키마
 
-`benchmark_400.jsonl` contains one JSON object per case:
+`benchmark_400.jsonl`은 한 줄에 사례 하나입니다.
 
-| Field | Meaning |
+| 필드 | 뜻 |
 |---|---|
-| `qa_id` | Original stable case identifier |
-| `domain` | `broadcast_program`, `broadcast_ad` or `product_sales` |
-| `artifact` | Pre-broadcast scenario; original text preserved |
-| `gold_rule_id` | The single gold regulation ID used for exact-match evaluation |
+| `qa_id` | 사례 고유 ID |
+| `domain` | `broadcast_program`, `broadcast_ad`, `product_sales` |
+| `artifact` | 방송 전 제작안 (원문 그대로) |
+| `gold_rule_id` | 정확 일치 채점에 쓰는 단일 정답 규정 ID |
 
-Questions are method-specific and provided in `../configs/paper.json`. Join `sources.jsonl` by `qa_id` to obtain original decision IDs and source references (`source_id`, PDF `pages`, official `board_url`). These references are not model inputs. Official source links are preserved from the original records; their current availability has not been rechecked in this release.
+질문은 방법마다 다르며 `../configs/paper.json`에 있습니다. `sources.jsonl`을 `qa_id`로 연결하면 의결 번호와 출처(`source_id`, PDF `pages`, 공식 게시물 `board_url`)를 볼 수 있습니다. 출처는 모델 입력이 아닙니다. 공식 링크는 원 기록 그대로이며 현재 접속 가능 여부는 다시 확인하지 않았습니다.
 
-`legal_corpus.jsonl` is a byte-identical copy of the experiment's fixed corpus. It has 226 article-level records and nested `sub_items`, covering 1,040 rule units in total. It is not a flat 1,040-line file. `regulations/` preserves the three original TXT snapshots. These are experiment snapshots, not a claim about the latest regulations.
+`legal_corpus.jsonl`은 실험에 쓴 고정 코퍼스입니다. 조 단위 226줄이고 항·호·목은 `sub_items`에 중첩되어 있어 전체 1,040개 단위를 이룹니다. `regulations/`는 원문 TXT 3개이며 실험 시점의 스냅샷입니다.
 
-## Construction and validation
+## 구축과 검증
 
-Official decision records were used to identify the reference regulations. An LLM rewrote recorded content as pre-broadcast scenarios, with instructions to preserve content facts and remove decision outcomes, regulatory citations and retrospective judgments. The generation prompt and its system message are included in `../prompts/`.
+공식 의결 기록으로 참조 규정을 확인했습니다. LLM이 기록된 방송 내용을 방송 전 제작안으로 다시 쓰되, 내용 사실은 유지하고 심의 결과·인용 규정·사후 판단은 지우도록 지시했습니다. 생성 프롬프트는 `../prompts/`에, 파이프라인은 `../src/synthetic_data/`에 있습니다. `python -m src.synthetic_data.export_benchmark`가 전체 합성 데이터에서 이 파일과 `sources.jsonl`을 만듭니다.
 
-The source pipeline records automated validation and case filtering. Source records carry the internal status `auto_draft`; this field is omitted from the retrieval-focused public schema. Publication does not change the underlying review status or certify expert review of every case. Gold references reflect the case construction process and should not be interpreted as an exhaustive list of every potentially relevant provision.
+파이프라인은 자동 검증과 사례 필터링을 기록합니다. 원 기록의 상태는 `auto_draft`이며 공개 스키마에서는 이 필드를 뺐습니다. 공개가 모든 사례의 전문가 검토를 뜻하지는 않습니다. 정답은 사례 구축 과정을 반영한 것이며 적용 가능한 모든 조항의 목록은 아닙니다.
 
-`review_required`, generated rationales, overall answers and official outcomes are omitted because the paper's main evaluation measures regulation retrieval. The original working dataset remains unchanged.
+논문의 주 평가가 규정 검색이므로 `review_required`, 생성된 해설, 종합 답변, 공식 심의 결과는 공개본에서 뺐습니다.
 
-## Version integrity
+## 무결성
 
-`manifest.json` records source file hashes, the ordered evaluation-ID hash, and checksums for the public payload. The public export has a new schema and therefore a different file hash from the original dataset. Future revisions should preserve this distinction and describe changes in release notes.
+`manifest.json`에는 원본 파일 해시, 평가 ID 순서 해시, 공개 파일 체크섬이 기록되어 있습니다. 공개본은 스키마가 달라 원본 데이터셋과 파일 해시가 다릅니다.

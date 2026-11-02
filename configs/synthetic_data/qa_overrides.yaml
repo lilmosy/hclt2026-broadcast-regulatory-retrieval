@@ -1,0 +1,210 @@
+# 역할: 자동 파싱만으로 확정하기 어려운 의결 사례를 사람이 재현 가능하게 보완한다.
+# - decisions.<의결번호>: 수정할 공식 사례
+# - reviewed_rule_ids: 사람이 확인한 검토 규정 ID
+# - artifact_text/rationale: 자동 추출 대신 사용할 수동 문안
+# - raw_content_start_occurrence: 표 열 순서로 앞 사건이 붙었을 때 사용할 1-based ○ 본문 순번
+# - exclude/exclude_reason: 최종 case pool에서 제외할 사건과 재현 가능한 사유
+# - note: 왜 수동으로 보완했는지에 대한 provenance
+# 생성된 synthetic_qa.jsonl을 직접 고치지 말고 이 파일을 수정한 뒤 pipeline을 다시 실행한다.
+
+decisions:
+  "2026-광고-07-0077":
+    exclude: true
+    exclude_reason: ambiguous_same_content_different_gold_or_outcome
+  "2026-광고-07-0078":
+    exclude: true
+    exclude_reason: ambiguous_same_content_different_gold_or_outcome
+  "2026-광고-07-0079":
+    exclude: true
+    exclude_reason: ambiguous_same_content_different_gold_or_outcome
+
+  "2025-09-0137":
+    exclude: true
+    exclude_reason: ambiguous_same_content_different_gold_or_outcome
+  "2025-09-0138":
+    exclude: true
+    exclude_reason: ambiguous_same_content_different_gold_or_outcome
+
+  "2024-광고-08-0086":
+    exclude: true
+    exclude_reason: ambiguous_same_content_different_gold_or_outcome
+  "2024-광고-08-0087":
+    exclude: true
+    exclude_reason: ambiguous_same_content_different_gold_or_outcome
+  "2024-광고-08-0088":
+    exclude: true
+    exclude_reason: ambiguous_same_content_different_gold_or_outcome
+  "2024-광고-08-0089":
+    exclude: true
+    exclude_reason: ambiguous_same_content_different_gold_or_outcome
+  "2024-광고-08-0090":
+    exclude: true
+    exclude_reason: ambiguous_same_content_different_gold_or_outcome
+  "2024-광고-08-0091":
+    exclude: true
+    exclude_reason: ambiguous_same_content_different_gold_or_outcome
+  "2024-광고-08-0092":
+    exclude: true
+    exclude_reason: ambiguous_same_content_different_gold_or_outcome
+  "2024-광고-08-0093":
+    exclude: true
+    exclude_reason: ambiguous_same_content_different_gold_or_outcome
+  "2024-광고-08-0094":
+    exclude: true
+    exclude_reason: ambiguous_same_content_different_gold_or_outcome
+  "2024-광고-08-0095":
+    exclude: true
+    exclude_reason: ambiguous_same_content_different_gold_or_outcome
+  "2024-광고-08-0096":
+    exclude: true
+    exclude_reason: ambiguous_same_content_different_gold_or_outcome
+  "2024-광고-08-0097":
+    exclude: true
+    exclude_reason: ambiguous_same_content_different_gold_or_outcome
+  "2024-광고-08-0098":
+    exclude: true
+    exclude_reason: ambiguous_same_content_different_gold_or_outcome
+  "2024-광고-08-0099":
+    exclude: true
+    exclude_reason: ambiguous_same_content_different_gold_or_outcome
+  "2024-광고-08-0100":
+    exclude: true
+    exclude_reason: ambiguous_same_content_different_gold_or_outcome
+  "2024-광고-08-0101":
+    exclude: true
+    exclude_reason: ambiguous_same_content_different_gold_or_outcome
+  "2024-광고-08-0102":
+    exclude: true
+    exclude_reason: ambiguous_same_content_different_gold_or_outcome
+
+  "2025-13-0220":
+    exclude: true
+    exclude_reason: source_citation_mismatch
+
+  # 텍스트 artifact와 동결 법령만으로는 Gold 판단에 필요한 화면·음성·외부 사실·전체 편성을
+  # 확인할 수 없는 사례. 텍스트 전용 benchmark에서는 제외하되 deleted_synthetic_data.jsonl에 보존한다.
+  "2026-방송-12-0051":
+    exclude: true
+    exclude_reason: multimodal_or_insufficient_information
+    note: "매장 외관의 식별 가능성과 상표 노출 정도를 실제 화면 없이 판단할 수 없음"
+  "2025-12-0196":
+    exclude: true
+    exclude_reason: multimodal_or_insufficient_information
+    note: "출연 의료인의 선정·자격·전문성 검증 정보가 source와 artifact에 없음"
+  "2025-12-0197":
+    exclude: true
+    exclude_reason: multimodal_or_insufficient_information
+    note: "출연 의료인의 선정·자격·전문성 검증 정보가 source와 artifact에 없음"
+  "2025-07-0118":
+    exclude: true
+    exclude_reason: multimodal_or_insufficient_information
+    note: "번역·자막 사고 뒤 즉시 고지와 후속 조치가 있었는지 사전 제작안으로 판단할 수 없음"
+  "2025-17-0257":
+    exclude: true
+    exclude_reason: multimodal_or_insufficient_information
+    note: "충돌 장면이 과도하게 상세한지 실제 영상 없이 판단할 수 없음"
+  "2025-06-0086":
+    exclude: true
+    exclude_reason: multimodal_or_insufficient_information
+    note: "사망자와 유족의 명예를 훼손하는 구체적 표현·화면·맥락이 artifact에 없음"
+  "2024-35-0362":
+    exclude: true
+    exclude_reason: multimodal_or_insufficient_information
+    note: "통역 누락 뒤 즉시 고지와 후속 조치가 있었는지 사전 제작안으로 판단할 수 없음"
+  "2024-방송-22-0139":
+    exclude: true
+    exclude_reason: multimodal_or_insufficient_information
+    note: "출연자 명단만 있고 실제 대담 쟁점·발언·진행 및 전체 편성의 균형 정보가 없음"
+  "2024-방송-22-0140":
+    exclude: true
+    exclude_reason: multimodal_or_insufficient_information
+    note: "출연자 명단만 있고 실제 대담 쟁점·발언·진행 및 전체 편성의 균형 정보가 없음"
+  "2024-방송-22-0141":
+    exclude: true
+    exclude_reason: multimodal_or_insufficient_information
+    note: "출연자 명단만 있고 실제 대담 쟁점·발언·진행 및 전체 편성의 균형 정보가 없음"
+  "2024-방송-22-0142":
+    exclude: true
+    exclude_reason: multimodal_or_insufficient_information
+    note: "출연자 명단만 있고 실제 대담 쟁점·발언·진행 및 전체 편성의 균형 정보가 없음"
+  "2024-방송-22-0143":
+    exclude: true
+    exclude_reason: multimodal_or_insufficient_information
+    note: "출연자 명단만 있고 실제 대담 쟁점·발언·진행 및 전체 편성의 균형 정보가 없음"
+  "2024-방송-22-0144":
+    exclude: true
+    exclude_reason: multimodal_or_insufficient_information
+    note: "출연자 명단만 있고 실제 대담 쟁점·발언·진행 및 전체 편성의 균형 정보가 없음"
+  "2024-방송-22-0145":
+    exclude: true
+    exclude_reason: multimodal_or_insufficient_information
+    note: "출연자 명단만 있고 실제 대담 쟁점·발언·진행 및 전체 편성의 균형 정보가 없음"
+  "2024-32-0251":
+    exclude: true
+    exclude_reason: multimodal_or_insufficient_information
+    note: "28개 보도 전체의 관점·당사자 의견 구성이 없고 단일 리포트 주제만 제시됨"
+  "2025-05-0077":
+    exclude: true
+    exclude_reason: multimodal_or_insufficient_information
+    note: "특정 주류 제품이 과도하게 부각됐는지 실제 자료 화면과 노출 방식 없이 판단할 수 없음"
+  "2025-04-0065":
+    exclude: true
+    exclude_reason: multimodal_or_insufficient_information
+    note: "암 치료 정보의 실제 주장과 근거가 없어 과학적 검증 가능성을 판단할 수 없음"
+  "2025-12-0198":
+    exclude: true
+    exclude_reason: multimodal_or_insufficient_information
+    note: "문제가 된 비속어의 실제 표현과 사용 맥락이 없음"
+  "2025-08-0122":
+    exclude: true
+    exclude_reason: multimodal_or_insufficient_information
+    note: "발음·진행 상태와 사고 고지 여부를 실제 음성 및 방송 후 정보 없이 판단할 수 없음"
+  "2024-35-0354":
+    exclude: true
+    exclude_reason: multimodal_or_insufficient_information
+    note: "B씨 피해자 표기의 정확성과 음성·자막의 대응 관계를 화면 및 외부 사실 없이 검증할 수 없음"
+  "2024-34-0323":
+    exclude: true
+    exclude_reason: multimodal_or_insufficient_information
+    note: "공식 결과·Gold는 인권보호 위반이나 추출된 본문에는 해당 차이·조롱·열등 취급 표현이 없어 판단 근거가 없음"
+
+  # artifact 또는 rationale을 보완하면 살릴 수 있지만 이번 확정본에서는 제외하고 별도 보존한다.
+  "2024-11-0053":
+    exclude: true
+    exclude_reason: repairable_but_excluded
+    note: "청소년시청보호시간대 판단에 필요한 방송 시각이 artifact에서 누락됨"
+  "2024-13-0060":
+    exclude: true
+    exclude_reason: repairable_but_excluded
+    note: "출연자 칭찬의 대상과 과속 운전자를 혼동한 rationale로, 문맥을 다시 쓰면 복구 가능"
+  "2026-방송-10-0040":
+    exclude: true
+    exclude_reason: repairable_but_excluded
+    note: "재력·학력의 우월화 및 사교육 강조를 artifact에 더 명시하면 복구 가능"
+
+  "2024-08-0035":
+    raw_content_start_occurrence: 4
+    note: "여러 페이지 표에서 같은 사건 본문이 반복 추출되어 마지막 완전 본문부터 사용"
+
+  "2024-08-0036":
+    raw_content_start_occurrence: 3
+    note: "앞 사건 2024-08-0035의 계속 문장이 먼저 붙어 마지막 완전 본문부터 사용"
+
+  "2024-방송-14-0070":
+    raw_content_start_occurrence: 2
+    note: "앞 행 피프티 피프티 사건의 계속 문장이 붙어 두 번째 본문부터 사용"
+
+  "2024-방송-14-0074":
+    raw_content_start_occurrence: 2
+    note: "앞 행 2024-방송-14-0070의 계속 문장이 붙어 두 번째 본문부터 사용"
+
+  "2024-09-0038":
+    raw_content_start_occurrence: 3
+    note: "앞 행 2024-방송-14-0074의 계속 문장이 붙고 자기 본문이 반복되어 마지막 완전 본문부터 사용"
+
+  "2026-광고-04-0044":
+    reviewed_rule_ids:
+      - AD_REVIEW_ART18_P2_I1
+    artifact_text: "유선 케이블을 연결해 충전하는 주방용품 광고에서 ‘무선 USB 충전 시스템’, ‘무선 충전 시스템 내장’이라는 문구를 표시한다."
+    rationale: "유선 케이블을 이용해 충전하는 제품이지만, 해당 문구만으로 충전 패드 방식의 무선충전 제품으로 잘못 인식될 우려는 크지 않다고 판단했다."
+    note: "공식 표에는 관련조항이 없으나, 무선 충전 표현의 진실성 여부를 검토한 문제없음 사례로 수동 연결한 경계 사례"

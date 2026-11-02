@@ -1,0 +1,41 @@
+# 역할: 규정 원문 TXT를 legal corpus로 변환할 때 쓰는 설정.
+# - 어떤 규정을 적재하는가? → documents
+# - 각 규정의 document_id, 공식 이름, TXT 파일은 무엇인가? → documents.<id>
+# - 검색·인용 해소에 사용할 별칭은 무엇인가? → aliases, external_document_aliases
+# 이 파일에는 규정 본문이 들어오지 않는다. src.corpus.build_legal_corpus가 이 설정과
+# data/regulations/*.txt를 읽어 data/legal_corpus.jsonl을 생성한다.
+
+authority_levels:
+  - STATUTE
+  - DECREE
+  - RULE
+  - NOTICE
+  - MANUAL
+
+documents:
+  AD_REVIEW:
+    name: "방송광고심의에 관한 규정"
+    file: "방송광고심의에_관한_규정.txt"
+    authority_level: RULE
+    aliases:
+      - "방송광고심의규정"
+      - "방송광고심의에 관한 규정"
+  BR_REVIEW:
+    name: "방송심의에 관한 규정"
+    file: "방송심의에_관한_규정.txt"
+    authority_level: RULE
+    aliases:
+      - "방송심의규정"
+      - "방송심의에 관한 규정"
+  SALES_REVIEW:
+    name: "상품소개 및 판매방송 심의에 관한 규정"
+    file: "상품소개_및_판매방송_심의에_관한_규정.txt"
+    authority_level: RULE
+    aliases:
+      - "상품소개 및 판매방송 심의에 관한 규정"
+      - "상품소개및판매방송심의에관한규정"
+      - "상품판매방송심의규정"
+
+external_document_aliases:
+  법: "방송법"
+  방송법: "방송법"

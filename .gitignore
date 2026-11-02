@@ -1,6 +1,9 @@
 .DS_Store
 .env
-.env.*
 .venv/
 __pycache__/
 *.py[cod]
+
+# Local working files: downloaded decision PDFs, intermediate data, run outputs and API caches
+data/decisions/
+outputs/

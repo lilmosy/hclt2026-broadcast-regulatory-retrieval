@@ -1,0 +1,28 @@
+# 역할: 공식 의결 PDF를 최종 synthetic QA로 변환할 때 모든 사례에 공통으로 적용하는 설정.
+# - 최종 JSONL 계약 버전은 무엇인가? → dataset.schema_version
+# - 모델에게 제시할 공통 question은 무엇인가? → qa.question
+# - 어떤 공식 결과를 boolean review_required로 매핑할 것인가? → qa.outcome_mapping
+# - artifact/rationale 생성에 사용할 prompt는 무엇인가? → generation.*_prompt
+# 실제 PDF 목록은 decision_sources.yaml, 사례별 수동 수정은 qa_overrides.yaml이 담당한다.
+# 이 파일은 출력 데이터가 채워지는 틀이 아니라 build_synthetic_data.py가 실행 중 읽는 사람 관리 설정이다.
+
+dataset:
+  schema_version: synthetic_qa_v2
+
+qa:
+  question: "다음 제작물을 방송 전에 검토하라. 검토 필요 여부, 관련 규정과 판단 근거를 제시하라."
+  outcome_mapping:
+    review_required:
+      - 의견제시
+      - 권고
+      - 주의
+      - 경고
+      - 관계자 징계
+      - 과징금
+    no_flag:
+      - 문제없음
+
+generation:
+  # artifact v2 = hybrid guarded few-shot, rationale v4 = R3 + 4단계 논증 계약
+  artifact_prompt: prompts/artifact_generation.md
+  rationale_prompt: prompts/rationale_generation.md
