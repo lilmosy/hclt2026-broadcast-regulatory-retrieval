@@ -7,8 +7,8 @@ authors:
     given-names: Soyoung
   - family-names: Heo
     given-names: Yoonseok
-repository-code: "https://github.com/lilmosy/broadcast-regulatory-retrieval"
-url: "https://github.com/lilmosy/broadcast-regulatory-retrieval"
+repository-code: "https://github.com/lilmosy/hclt2026-broadcast-regulatory-retrieval"
+url: "https://github.com/lilmosy/hclt2026-broadcast-regulatory-retrieval"
 preferred-citation:
   type: conference-paper
   title: "Evaluating Agentic Regulatory Retrieval Using a Synthetic Benchmark from Broadcasting Violations"
